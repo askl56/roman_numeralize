@@ -1,14 +1,12 @@
 class Integer
 
   def roman_numeralize
-    result = ""
     number = self
-    roman_numeral_mapping.keys.each do |divisor|
+    roman_numeral_mapping.keys.each_with_object(String.new) do |divisor, memo|
       quotient, modulus = number.divmod(divisor)
-      result << roman_numeral_mapping[divisor] * quotient
+      memo << roman_numeral_mapping[divisor] * quotient
       number = modulus
     end
-    result
   end
 
   private
